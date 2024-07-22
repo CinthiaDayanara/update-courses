@@ -5,9 +5,14 @@ const courseRoutes = require('./routes/courseRoutes');
 const app = express();
 const port = 3006;
 
-mongoose.connect('mongodb://localhost:27017/courses_db', {
+const uri = 'mongodb+srv://admin:admin@cluster0.acc1is2.mongodb.net/courses_db?retryWrites=true&w=majority&appName=Cluster0';;
 
-});
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log('Conectado a MongoDB Atlas'))
+.catch((error) => console.error('Error al conectar a MongoDB Atlas:', error.message));
 
 app.use(cors({
   origin: '*',
